@@ -1,0 +1,369 @@
+;==========================================================
+;
+;
+;   ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗
+;   ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+;   ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+;   ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+;   ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+;   ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+;
+;
+;   To learn more about how to configure Polybar
+;   go to https://github.com/polybar/polybar
+;
+;   The README contains a lot of information
+;
+;==========================================================
+
+[colors]
+background = ${xrdb:color0:#2e3436}
+;background = #00ff2329
+background-alt = #0444
+foreground = ${xrdb:color15:#fffffa}
+;foreground = #dfdfdf
+foreground-alt = #555
+
+primary = #01cccf
+secondary = #e60053
+alert = #bd2c40
+
+layout = #999999
+memory = #65cf01
+cpu = #ff0101
+battery = #65cf01
+temperature = #fdcf01
+eth = #3581e3
+wlan = #3581e3
+date = #a15aad
+
+[bar/example]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 27
+;offset-x = 1%
+;offset-y = 1%
+;radius = 6.0
+fixed-center = false
+bottom = true
+enable-ipc = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 1
+
+module-margin-left = 0
+module-margin-right = 1
+
+font-0 = monospace:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = Pomicons:size=10;1
+font-3 = Siji:pixelsize=10;1
+font-4 = FontAwesome:pixelsize=10;0
+font-5 = Font Awesome 5 Free:style=Solid:pixelsize=10;4
+font-6 = Font Awesome 5 Free:style=Regular:pixelsize=10;4
+font-7 = Font Awesome 5 Brands:style=Regular:pixelsize=10;4
+
+modules-left = i3
+modules-center = microphone
+modules-right = pomodoro filesystem xbacklight pulseaudio memory cpu battery temperature wlan eth xkeyboard date powermenu
+
+tray-position = left
+tray-padding = 2
+tray-transparent = true
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...%
+
+[module/xkeyboard]
+type = internal/xkeyboard
+
+format-prefix = ""
+format-prefix-foreground = ${colors.layout}
+format-underline = ${colors.layout}
+format = <label-layout>
+
+label-layout = %layout%
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted = %{F#0a81f5}%mountpoint%%{F-}:%percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/i3]
+type = internal/i3
+index-sort = true
+wrapping-scroll = false
+format = <label-state> <label-mode>
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+; focused = Active workspace on focused monitor
+label-focused = %name%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %name%
+label-unfocused-padding = 1
+
+; visible = Active workspace on unfocused monitor
+label-visible = %name%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label>
+label =  %percentage%%
+format-underline = ${root.foreground}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = ""
+format-prefix-foreground = ${colors.cpu} 
+format-underline = ${colors.cpu}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 5
+format-prefix = ""
+format-prefix-foreground = ${colors.memory}
+format-underline = ${colors.memory}
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = wlo1
+interval = 0.3
+unknown-as-up = true
+
+format-connected = <ramp-signal><label-connected>
+format-connected-underline = ${colors.wlan}
+udspeed-minwidth = 3
+label-connected = "%downspeed% %upspeed%"
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.wlan}
+
+[module/eth]
+type = internal/network
+interface = enp0s21f0u3
+interval = 0.3
+unknown-as-up = true
+
+format-connected-underline = ${colors.eth}
+format-connected-prefix = ""
+format-connected-prefix-foreground = ${colors.eth}
+udspeed-minwidth = 3
+label-connected = "%downspeed% %upspeed%"
+
+format-disconnected =
+;format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+;label-disconnected = %ifname% disconnected
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = "%Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.date}
+format-underline = ${colors.date}
+
+label = "%date% %time%"
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume>
+label-volume =  %percentage%%
+label-volume-foreground = ${root.foreground}
+
+label-muted = 
+label-muted-foreground = #666
+
+format-muted-underline = #666
+format-volume-underline = ${root.foreground}
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ACAD
+full-at = 100
+
+format-charging = <animation-charging><label-charging>
+format-charging-underline = ${colors.battery}
+
+format-discharging = <ramp-capacity><label-discharging>
+format-discharging-underline = ${colors.battery}
+
+format-full-prefix = ""
+format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-underline = ${colors.battery}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.battery}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.battery}
+animation-charging-framerate = 750
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-foreground = ${colors.battery}
+animation-discharging-framerate = 750
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 70
+
+format = <ramp><label>
+format-underline = ${colors.temperature} 
+format-warn = <ramp><label-warn>
+format-warn-underline = ${colors.secondary}
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-foreground = ${colors.secondary}
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.temperature}
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = 
+label-open-foreground = ${colors.secondary}
+label-close =  cancel
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = reboot
+menu-0-0-exec = menu-open-1
+menu-0-1 = power off
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = cancel
+menu-1-0-exec = menu-open-0
+menu-1-1 = reboot
+menu-1-1-exec = reboot
+
+menu-2-0 = power off
+menu-2-0-exec = poweroff
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+pseudo-transparency = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+[module/pomodoro]
+type = custom/script
+exec = ~/.local/bin/org-pomodoro.sh
+interval = 5
+click-left = ~/.local/bin/org-pomodoro.sh toggle
+click-middle = ~/.local/bin/org-pomodoro.sh kill
+click-right = ~/.local/bin/org-pomodoro.sh end-or-restart
+; vim:ft=dosini
+
+[module/microphone]
+type = custom/ipc
+hook-0 = ~/.config/polybar/update_microphone.sh
+initial = 1
+
+format-underline = ${root.foreground}
+
+[module/demo]
+type = custom/ipc
+hook-0 = echo foobar
+hook-1 = date +%s
+hook-2 = whoami
+initial = 1
+click-left = polybar-msg -p %pid% hook demo 1
+click-right = polybar-msg -p %pid% hook demo 2
+double-click-left = polybar-msg -p %pid% hook demo 3
