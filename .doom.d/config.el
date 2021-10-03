@@ -3,10 +3,10 @@
 ;; Theme
 (setq doom-theme 'doom-one)
 
-(setq doom-font (font-spec :family "Fira Code" :size 12)
+(setq doom-font (font-spec :family "Fira Code" :size 18)
       doom-variable-pitch-font (font-spec :family "sans"))
 
-(setq display-line-numbers-type nil)
+(setq display-line-numbers-type 'relative)
 
 ;; QoL
 (setq which-key-show-early-on-C-h t)
@@ -28,13 +28,26 @@
 
 (setq lsp-enable-indentation nil)
 
+(add-hook! 'lsp-after-initialize-hook
+  (flycheck-add-next-checker 'lsp 'c/c++-cppcheck))
+
+
 ;;Latex
 ;;(setq TeX-save-query nil)
 ;;(setq latex-run-command "xelatex")
 ;;(setq TeX-engine "xetex")
 
 ;; Org
-(setq org-directory "~/Dropbox/Orgzly/")
+(after! org
+  (setq org-directory "~/projects/Orgzly/")
+  (setq org-agenda-files "~/projects/Orgzly/"))
+
+(require 'org-habit)
+(setq org-habit-show-habits-only-for-today nil)
+
+(after! org-clock
+  (setq org-clock-persist t)
+  (org-clock-persistence-insinuate))
 
 (defun +org-pomodoro/restart-last-pomodoro ()
   "Starts a new pomodoro on the last clocked-in task. Resets the pomodoro count without prompt when necessary.
@@ -72,6 +85,9 @@
   "Retrieve whether org-pomodoro is active or not."
   (not (eq org-pomodoro-state :none)))
 
-(setq org-pomodoro-long-break-length 30)
+(setq org-pomodoro-long-break-length 10)
 (setq org-pomodoro-short-break-length 10)
 (setq org-pomodoro-length 60)
+
+;(use-package! ox-moderncv
+;  :after org)

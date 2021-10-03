@@ -9,6 +9,8 @@
      (java-mode . "java")
      (awk-mode . "awk")
      (other . "doom")))
+ '(org-agenda-files
+   '("~/projects/Orgzly/Study.org" "/home/denicon/projects/Orgzly/Organize.org" "/home/denicon/projects/Orgzly/Projects.org_archive" "/home/denicon/projects/Orgzly/Info.org_archive" "/home/denicon/projects/Orgzly/Info.org"))
  '(org-agenda-sticky t)
  '(plantuml-default-exec-mode 'executable)
  '(safe-local-variable-values

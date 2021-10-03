@@ -8,7 +8,7 @@ export ZSH="/home/denicon/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="nuts"
+ZSH_THEME="random"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +68,7 @@ ZSH_THEME="nuts"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -118,7 +118,16 @@ export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
 export TERMINAL="kitty"
 alias em=$EDITOR
 alias emg=$VISUAL
-alias dgit='git --git-dir ~/.dotfiles/.git --work-tree=$HOME'
+alias dgit='git --git-dir ~/.dotfiles --work-tree=$HOME'
 
 path+=("/home/denicon/.cargo/bin")
 path+=("/home/denicon/.emacs.d/bin")
+path+=("/home/denicon/.config/rofi/bin")
+path+=("/home/denicon/.local/bin")
+path+=("/home/denicon/aur/emsdk")
+path+=("/home/denicon/aur/emsdk/node/14.15.5_64bit/bin")
+path+=("/home/denicon/aur/emsdk/upstream/emscripten")
+
+unsetopt BEEP
+
+

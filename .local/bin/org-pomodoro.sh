@@ -31,13 +31,13 @@ set_state() {
 set_pomodoro_icon() {
     case "$STATE" in
         ":pomodoro")
-            ICON="%{F#B77A76}\ue002";;
+            ICON="%{F#E77A76}\uf254";;
         ":overtime")
-            ICON="%{F#B77A76}\ue003";;
+            ICON="%{F#B77A76}\ue254";;
         ":short-break")
-            ICON="%{F#958090}\ue005";;
+            ICON="%{F#958090}\uf236";;
         ":long-break")
-            ICON="%{F#7DAEA9}\ue006";;
+            ICON="%{F#7DAEA9}\uf236";;
         *)
             ICON="\ue007";;
     esac

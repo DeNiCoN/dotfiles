@@ -1,7 +1,7 @@
 #
 # ~/.bash_profile
 #
-export PATH="${PATH}:/home/denicon/.local/bin:/home/denicon/.cargo/bin:/home/denicon/.emacs.d/bin"
+export PATH="${PATH}:/home/denicon/.local/bin:/home/denicon/.cargo/bin:/home/denicon/.emacs.d/bin:/home/denicon/.config/rofi/bin"
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 

@@ -40,6 +40,7 @@ set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset Master 5%+ && $refresh_i3status
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer sset Master 5%- && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id amixer sset Master toggle && $refresh_i3status
+# bindsym XF86AudioMicMute exec --no-strtup-id "amixer set Capture toggle && polybar-msg hook microphone 1"
 
 bindsym XF86AudioPlay exec playerctl play-pause
 bindsym XF86AudioNext exec playerctl next
@@ -57,7 +58,7 @@ for_window [class="kitty-floating"] floating enable
 bindsym $mod+q kill
 
 # start a program launcher
-bindsym $mod+o exec --no-startup-id rofi -show drun -sort
+bindsym $mod+o exec /home/denicon/.config/rofi/bin/launcher_colorful
 
 # change focus
 bindsym $mod+j focus down
@@ -170,34 +171,38 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
-bindsym $mod+b exec "xinput float 10"
 
-bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
+bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
 
 # Make screenshot
 bindsym Print exec "maim | xclip -selection clipboard -t image/png"
 bindsym Shift+Print exec "maim -s -u -f png | xclip -selection clipboard -t image/png"
 
-#Display calendar
-bindsym $mod+c exec "display-calendar.sh"
-bindsym $mod+t exec "display-agenda.sh"
-
-for_window [class="feh" title="calendar"] floating enable
-
-#Convert clipboard image to text
-bindsym $mod+Ctrl+1 exec "xclip -selection clipboard -t image/png -o | tesseract - - -l eng | xclip -selection clipboard"
-bindsym $mod+Ctrl+2 exec "xclip -selection clipboard -t image/png -o | tesseract - - -l rus | xclip -selection clipboard"
-bindsym $mod+Ctrl+3 exec "xclip -selection clipboard -t image/png -o | tesseract - - -l eng+rus | xclip -selection clipboard"
-bindsym $mod+Ctrl+4 exec "xclip -selection clipboard -t image/png -o | tesseract - - -l rus+ukr | xclip -selection clipboard"
-bindsym $mod+Ctrl+5 exec "xclip -selection clipboard -t image/png -o | tesseract - - -l eng+rus+ukr | xclip -selection clipboard"
+# Run org capture
+bindsym $mod+n exec 'org-capture'
+for_window [title="doom-capture"] floating enable
 
 bindsym KP_Begin exec "amixer set Capture toggle && polybar-msg hook microphone 1"
 bindsym KP_Right exec "amixer set Capture toggle && polybar-msg hook microphone 1"
 bindsym --release KP_Right exec "amixer set Capture toggle && polybar-msg hook microphone 1"
 
+mode "display" {
+	bindsym $mod+1 exec "autorandr -c -f mobile"
+	bindsym $mod+2 exec "autorandr -c -f docked"
+	bindsym $mod+3 exec "autorandr -c -f docked-60"
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+        bindsym $mod+d mode "default"
+}
+
+bindsym $mod+d mode "display"
+bindsym $mod+Escape exec "powermenu"
+
+
 exec_always "xset -r 85"
-exec picom -b
+exec picom -b --config ~/.config/picom/picom.conf
 
 exec_always /usr/lib/kdeconnectd --replace
 exec indicator-kdeconnect 
@@ -210,3 +215,5 @@ exec_always --no-startup-id  ~/.config/i3/i3scripts/autoname_workspaces.py --nor
 
 exec_always --no-startup-id dunst
 exec --no-startup-id conky -b &
+
+exec_always --no-startup-id blueman-applet

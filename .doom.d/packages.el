@@ -50,3 +50,6 @@
 ;(unpin! t)
 
 (package! org-analyzer)
+
+;(package! org-cv
+;  :recipe (:local-repo "~/projects/org-cv"))
