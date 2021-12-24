@@ -39,8 +39,8 @@
 
 ;; Org
 (after! org
-  (setq org-directory "~/projects/Orgzly/")
-  (setq org-agenda-files "~/projects/Orgzly/"))
+  (setq org-directory "~/Dropbox/Orgzly/")
+  (setq org-agenda-files "~/Dropbox/Orgzly/"))
 
 (require 'org-habit)
 (setq org-habit-show-habits-only-for-today nil)
@@ -89,5 +89,5 @@
 (setq org-pomodoro-short-break-length 10)
 (setq org-pomodoro-length 60)
 
-;(use-package! ox-moderncv
-;  :after org)
+(use-package! ox-moderncv
+  :after org)

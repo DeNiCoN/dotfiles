@@ -51,5 +51,6 @@
 
 (package! org-analyzer)
 
-;(package! org-cv
-;  :recipe (:local-repo "~/projects/org-cv"))
+(package! org-cv
+  :recipe (:host gitlab
+           :repo "Titan-C/org-cv"))

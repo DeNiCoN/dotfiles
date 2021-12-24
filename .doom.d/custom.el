@@ -1,3 +1,6 @@
+;;; custom.el -*- lexical-binding: t; -*-
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -10,7 +13,7 @@
      (awk-mode . "awk")
      (other . "doom")))
  '(org-agenda-files
-   '("~/projects/Orgzly/Study.org" "/home/denicon/projects/Orgzly/Organize.org" "/home/denicon/projects/Orgzly/Projects.org_archive" "/home/denicon/projects/Orgzly/Info.org_archive" "/home/denicon/projects/Orgzly/Info.org"))
+   '("~/Dropbox/Orgzly/Study.org" "/home/denicon/Dropbox/Orgzly/Organize.org" "/home/denicon/Dropbox/Orgzly/Projects.org_archive" "/home/denicon/Dropbox/Orgzly/Info.org_archive" "/home/denicon/Dropbox/Orgzly/Info.org"))
  '(org-agenda-sticky t)
  '(plantuml-default-exec-mode 'executable)
  '(safe-local-variable-values
@@ -19,7 +22,8 @@
      (flycheck-disabled-checkers c/c++-clang c/c++-gcc)
      (projectile-project-compilation-cmd . "cmake --build . -j")
      (projectile-project-compilation-dir . "build")
-     (projectile-project-configure-cmd . "cmake -S .. -B . -DCMAKE_EXPORT_COMPILE_COMMANDS=on && cp compile_commands.json .."))))
+     (projectile-project-configure-cmd . "cmake -S .. -B . -DCMAKE_EXPORT_COMPILE_COMMANDS=on && cp compile_commands.json ..")))
+ '(warning-suppress-types '((revert-buffer-internal-hook))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
