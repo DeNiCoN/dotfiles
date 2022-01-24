@@ -205,7 +205,6 @@ exec_always "xset -r 85"
 exec picom -b --config ~/.config/picom/picom.conf
 
 exec_always /usr/lib/kdeconnectd --replace
-exec indicator-kdeconnect 
 # Fix notification size
 
 exec --no-startup-id ~/.config/wpg/wp_init.sh
@@ -217,3 +216,5 @@ exec_always --no-startup-id dunst
 exec --no-startup-id conky -b &
 
 exec_always --no-startup-id blueman-applet
+exec_always --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+exec --no-startup-id "sh -c 'sleep 5; exec redshift-gtk'"

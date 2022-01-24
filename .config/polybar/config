@@ -17,10 +17,10 @@
 ;==========================================================
 
 [colors]
-background = ${xrdb:color0:#2e3436}
-;background = #00ff2329
+;background = ${xrdb:color0:#2e3436}
+background = #00ff2329
 background-alt = #0444
-foreground = ${xrdb:color15:#fffffa}
+;foreground = ${xrdb:color15:#fffffa}
 ;foreground = #dfdfdf
 foreground-alt = #555
 
@@ -72,11 +72,11 @@ font-5 = Font Awesome 5 Free:style=Solid:pixelsize=13;2
 font-6 = Font Awesome 5 Free:style=Regular:pixelsize=13;2
 font-7 = Font Awesome 5 Brands:style=Regular:pixelsize=13;2
 
-modules-left = i3
-modules-center = microphone
-modules-right = pomodoro filesystem xbacklight pulseaudio memory cpu battery temperature wlan eth xkeyboard date powermenu
+modules-left = powermenu microphone memory cpu battery temperature pomodoro 
+modules-center = i3
+modules-right = filesystem xbacklight pulseaudio wlan eth xkeyboard date
 
-tray-position = left
+tray-position = right
 tray-padding = 2
 tray-transparent = true
 
@@ -303,10 +303,9 @@ ramp-foreground = ${colors.temperature}
 
 [module/powermenu]
 type = custom/text
-
-content = 
-
+content = " "
 click-left = ~/.config/rofi/bin/applet_powermenu
+
 [settings]
 screenchange-reload = true
 ;compositing-background = xor

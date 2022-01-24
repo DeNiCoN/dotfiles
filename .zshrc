@@ -120,6 +120,8 @@ alias em=$EDITOR
 alias emg=$VISUAL
 alias dgit='git --git-dir ~/.dotfiles --work-tree=$HOME'
 
+bindkey '^H' backward-kill-word
+
 path+=("/home/denicon/.cargo/bin")
 path+=("/home/denicon/.emacs.d/bin")
 path+=("/home/denicon/.config/rofi/bin")

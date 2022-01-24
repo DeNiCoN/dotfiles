@@ -1,6 +1,13 @@
-/** Basic config file **/
-
 configuration {
-  show-icons:         true;
-  icon-theme:         "Papirus";
+  show-icons:               true;
+  icon-theme:               "Papirus";
+  kb-row-up:                "Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
+  kb-row-down:              "Down,Control+j";
+  kb-accept-entry:          "Control+m,Return,KP_Enter";
+  terminal:                 "mate-terminal";
+  kb-remove-to-eol:         "Control+Shift+e";
+  kb-mode-complete:         "Control+o";
+  kb-row-right:             "Control+l";
+  kb-row-left:              "Control+h";
+  kb-remove-char-back:      "BackSpace";
 }
