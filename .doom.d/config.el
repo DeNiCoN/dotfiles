@@ -22,12 +22,21 @@
    (c-offsets-alist . ((inline-open . 0)))))
 (c-add-style "my-cc-style" my-cc-style)
 
-(require 'company)
-(setq company-idle-delay 0
-      company-minimum-prefix-length 2)
+
+(after! company
+  (setq company-idle-delay 0
+        company-minimum-prefix-length 2))
+
 
 (setq lsp-enable-indentation nil)
+(setq lsp-clients-clangd-args '("-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--header-insertion=never"
+                                "--header-insertion-decorators=0"))
 
+(after! lsp-clangd (set-lsp-priority! 'clangd 2))
 (add-hook! 'lsp-after-initialize-hook
   (flycheck-add-next-checker 'lsp 'c/c++-cppcheck))
 
@@ -40,7 +49,10 @@
 ;; Org
 (after! org
   (setq org-directory "~/Dropbox/Orgzly/")
-  (setq org-agenda-files "~/Dropbox/Orgzly/"))
+  (setq org-agenda-files "~/Dropbox/Orgzly/")
+  (setq org-log-into-drawer t)
+  (add-to-list 'org-modules 'org-capture)
+  )
 
 (require 'org-habit)
 (setq org-habit-show-habits-only-for-today nil)
@@ -91,3 +103,10 @@
 
 (use-package! ox-moderncv
   :after org)
+
+(after! projectile
+  (setq projectile-project-search-path '("~/projects/")))
+
+(after! svg-tag-mode
+  (setq svg-tag-tags
+        '((":TODO:" . ((lambda (tag) (svg-tag-make "TODO")))))))
