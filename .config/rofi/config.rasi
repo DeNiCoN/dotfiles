@@ -1,6 +1,6 @@
 configuration {
   show-icons:               true;
-  icon-theme:               "Papirus";
+  icon-theme:               "candy-icons";
   kb-row-up:                "Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
   kb-row-down:              "Down,Control+j";
   kb-accept-entry:          "Control+m,Return,KP_Enter";

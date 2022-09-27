@@ -8,7 +8,7 @@ export ZSH="/home/denicon/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="random"
+# ZSH_THEME="random"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -68,7 +68,12 @@ ZSH_THEME="random"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-syntax-highlighting)
+plugins=(
+	git 
+	zsh-syntax-highlighting 
+	zsh-autosuggestions
+	poetry
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -112,7 +117,6 @@ SAVEHIST=1000
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-alias ls='ls --color=auto'
 export EDITOR="vim"                  # $EDITOR opens in terminal
 export VISUAL="emacsclient -c -a emacs"         # $VISUAL opens in GUI mode
 export TERMINAL="kitty"
@@ -132,4 +136,4 @@ path+=("/home/denicon/aur/emsdk/upstream/emscripten")
 
 unsetopt BEEP
 
-
+eval "$(starship init zsh)"

@@ -68,9 +68,9 @@ font-1 = unifont:fontformat=truetype:size=13:antialias=false;1
 font-2 = Pomicons:size=13;1
 font-3 = Siji:pixelsize=13;0
 font-4 = FontAwesome:pixelsize=13;2
-font-5 = Font Awesome 5 Free:style=Solid:pixelsize=13;2
-font-6 = Font Awesome 5 Free:style=Regular:pixelsize=13;2
-font-7 = Font Awesome 5 Brands:style=Regular:pixelsize=13;2
+font-5 = Font Awesome 6 Free:style=Solid:pixelsize=13;2
+font-6 = Font Awesome 6 Free:style=Regular:pixelsize=13;2
+font-7 = Font Awesome 6 Brands:style=Regular:pixelsize=13;2
 
 modules-left = powermenu microphone memory cpu battery temperature pomodoro 
 modules-center = i3
@@ -165,7 +165,7 @@ format-underline = ${root.foreground}
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = "CPU: "
 format-prefix-foreground = ${colors.cpu} 
 format-underline = ${colors.cpu}
 label = %percentage:2%%
@@ -173,7 +173,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 5
-format-prefix = " "
+format-prefix = "MEM: "
 format-prefix-foreground = ${colors.memory}
 format-underline = ${colors.memory}
 label = %percentage_used%%
@@ -225,7 +225,7 @@ type = internal/date
 interval = 5
 
 date =
-date-alt = "%Y-%m-%d"
+date-alt = " %Y-%m-%d"
 
 time = %H:%M
 time-alt = %H:%M:%S

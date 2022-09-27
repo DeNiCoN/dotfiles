@@ -60,6 +60,10 @@ bindsym $mod+q kill
 # start a program launcher
 bindsym $mod+o exec /home/denicon/.config/rofi/bin/launcher_colorful
 
+# start file manager
+bindsym $mod+Shift+f exec thunar --class thunar-floating
+for_window [class="thunar-floating"] floating enable
+
 # change focus
 bindsym $mod+j focus down
 bindsym $mod+k focus up
@@ -200,7 +204,6 @@ mode "display" {
 bindsym $mod+d mode "display"
 bindsym $mod+Escape exec "powermenu"
 
-
 exec_always "xset -r 85"
 exec picom -b --config ~/.config/picom/picom.conf
 
@@ -209,13 +212,16 @@ exec_always /usr/lib/kdeconnectd --replace
 
 exec --no-startup-id ~/.config/wpg/wp_init.sh
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+exec eww daemon
 
 exec_always --no-startup-id  ~/.config/i3/i3scripts/autoname_workspaces.py --norenumber_workspaces &
 
 exec_always --no-startup-id dunst
 exec --no-startup-id conky -b &
+exec udiskie --tray
 
 exec_always --no-startup-id blueman-applet
 exec_always --no-startup-id polychromatic-tray-applet
 exec_always --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id "sh -c 'sleep 5; exec redshift-gtk'"
+exec --no-startup-id autorandr-launcher -d

@@ -12,17 +12,11 @@
      (java-mode . "java")
      (awk-mode . "awk")
      (other . "doom")))
- '(org-agenda-files
-   '("~/Dropbox/Orgzly/Study.org" "/home/denicon/Dropbox/Orgzly/Organize.org" "/home/denicon/Dropbox/Orgzly/Projects.org_archive" "/home/denicon/Dropbox/Orgzly/Info.org_archive" "/home/denicon/Dropbox/Orgzly/Info.org"))
  '(org-agenda-sticky t)
  '(plantuml-default-exec-mode 'executable)
  '(safe-local-variable-values
-   '((projectile-project-configure-cmd . "cmake -S . -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=on && cp build compile-commands.json .")
-     (flycheck-check-syntax-automatically mode-enabled save idle-change)
-     (flycheck-disabled-checkers c/c++-clang c/c++-gcc)
-     (projectile-project-compilation-cmd . "cmake --build . -j")
-     (projectile-project-compilation-dir . "build")
-     (projectile-project-configure-cmd . "cmake -S .. -B . -DCMAKE_EXPORT_COMPILE_COMMANDS=on && cp compile_commands.json ..")))
+   '((org-attach-id-dir . ".attach/")
+     (org-attach-directory . ".attach/")))
  '(warning-suppress-types '((revert-buffer-internal-hook))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

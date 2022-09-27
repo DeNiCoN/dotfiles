@@ -23,5 +23,6 @@ xset b off
 xrandr --setprovideroutputsource modesetting NVIDIA-0
 autorandr -c --skip-options crtc mobile
 
+~/.fehbg &
 setxkbmap -option caps:swapescape
 exec i3

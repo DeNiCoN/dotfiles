@@ -48,14 +48,34 @@
 
 ;; Org
 (after! org
-  (setq org-directory "~/Dropbox/Orgzly/")
-  (setq org-agenda-files "~/Dropbox/Orgzly/")
+  (setq org-directory "~/Dropbox/Orgzly")
+  (setq org-agenda-files (quote ("~/Dropbox/Orgzly")))
   (setq org-log-into-drawer t)
   (add-to-list 'org-modules 'org-capture)
+  (add-to-list 'org-capture-templates
+               '("r" "Reboot" entry
+                  (file+olp+datetree "~/Dropbox/Orgzly/Reboot.org")
+                  "* %U %?\n%i\n%a"
+                  :prepend t))
+  (require 'org-habit)
+  (require 'org-checklist)
+  (setq org-habit-show-habits-only-for-today nil)
+  (add-hook 'org-after-todo-state-change-hook 'org-reset-todo-maybe)
   )
 
-(require 'org-habit)
-(setq org-habit-show-habits-only-for-today nil)
+(defun org-reset-todo-maybe()
+  "Reset subtrees when RESET_CHECK_BOXES is set"
+  (interactive)
+  (when (member org-state org-done-keywords)
+    (if (org-entry-get (point) "RESET_CHECK_BOXES")
+        (org-map-tree
+         (lambda () (if (string-equal (org-get-todo-state) "[X]")
+                        (org-todo "[ ]")))
+         )
+      )
+    )
+  )
+
 
 (after! org-clock
   (setq org-clock-persist t)
@@ -83,9 +103,9 @@
                (org-pomodoro-expires-p))
       (setq org-pomodoro-count 0))
     (set-buffer (org-capture-get :buffer))
-      (goto-char (org-capture-get :insertion-point))
-      (org-clock-in)
-      (org-pomodoro-start :pomodoro)))
+    (goto-char (org-capture-get :insertion-point))
+    (org-clock-in)
+    (org-pomodoro-start :pomodoro)))
 
 (add-hook 'org-capture-after-finalize-hook #'+org-pomodoro/start-pomodoro-on-capture)
 
@@ -110,3 +130,4 @@
 (after! svg-tag-mode
   (setq svg-tag-tags
         '((":TODO:" . ((lambda (tag) (svg-tag-make "TODO")))))))
+
